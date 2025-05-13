@@ -8,7 +8,14 @@ export const fetchPosts = () => async dispatch => {
     dispatch({ type: FETCH_POSTS_SUCCESS, payload: res.data });
 };
 
-export const addPost = (post) => ({
-    type: ADD_POST,
-    payload: post
-});
+export const addPost = (post) => async (dispatch) => {
+    try {
+        const res = await axios.post('https://jsonplaceholder.typicode.com/posts', post);
+        dispatch({
+            type: ADD_POST,
+            payload: res.data,
+        });
+    } catch (err) {
+        console.error('Failed to add post:', err);
+    }
+};

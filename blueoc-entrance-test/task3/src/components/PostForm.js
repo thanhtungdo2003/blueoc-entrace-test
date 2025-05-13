@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addPost } from '../redux/actions';
 import { usePostForm } from '../contexts/PostFormContext';
@@ -6,28 +5,26 @@ import { usePostForm } from '../contexts/PostFormContext';
 export default function PostForm() {
     const dispatch = useDispatch();
     const {
-            searchKeyword,
-            setSearchKeyword,
-            page,
-            setPage,
-            row,
-            setRow,
-            title, setTitle,
-            body, setBody,
-            showForm, toggleForm} = usePostForm();
+        title, setTitle,
+        body, setBody,
+        showForm, toggleForm } = usePostForm();
 
     const handleSubmit = e => {
         e.preventDefault();
-        const newPost = { id: Date.now(), title, body };
+        if (!body || !title) {
+            return alert("Mission require field!");
+        }
+        const newPost = { id: Date.now(), title: title, body: body };
         dispatch(addPost(newPost));
         setTitle('');
         setBody('');
+        toggleForm(false);
     };
 
     return (
-        <form className={`post-form ${showForm?"show":"hide"}`} onSubmit={handleSubmit}>
+        <form className={`post-form ${showForm ? "show" : "hide"}`} onSubmit={handleSubmit}>
             <div className='form-control'>
-                <div className='control-btn' onClick={()=>{
+                <div className='control-btn' onClick={() => {
                     toggleForm(false);
                 }}>X</div>
             </div>
@@ -41,6 +38,7 @@ export default function PostForm() {
                 <textarea
                     className='body-input'
                     rows={4}
+                    value={body}
                     placeholder='Enter body...'
                     onChange={(e) => setBody(e.target.value)}
 

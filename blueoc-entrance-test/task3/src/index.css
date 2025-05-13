@@ -41,9 +41,12 @@ code {
   width: 20%;
   padding: 10px;
   box-sizing: border-box;
+
 }
 
 .new-btn {
+  position: sticky;
+  top: 20px;
   width: 200px;
   height: 30px;
   background-color: rgb(222, 89, 7);
@@ -88,10 +91,11 @@ code {
   width: 700px;
 }
 
-.post-form.show{
+.post-form.show {
   display: grid;
 }
-.post-form.hide{
+
+.post-form.hide {
   display: none;
 }
 
@@ -118,12 +122,12 @@ code {
 
   input,
   textarea {
+    width: 100%;
     outline: none;
     border: none;
   }
 
   textarea {
-    width: 100%;
     box-sizing: border-box;
     max-height: 100px;
     resize: none;
@@ -149,11 +153,13 @@ code {
     justify-content: center;
   }
 }
-.post-btns{
+
+.post-btns {
   display: flex;
   justify-content: end;
 }
-.submit-btn{
+
+.submit-btn {
   width: 100px;
   height: 30px;
   background-color: rgb(222, 89, 7);

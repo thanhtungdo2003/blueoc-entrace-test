@@ -1,24 +1,14 @@
-import React from 'react';
 import PostForm from './components/PostForm';
 import PostList from './components/PostList';
-import { FormProvider, usePostForm } from './contexts/PostFormContext';
+import { usePostForm } from './contexts/PostFormContext';
 
 function App() {
-  const {
-    searchKeyword,
-    setSearchKeyword,
-    page,
-    setPage,
-    row,
-    setRow,
-    title, setTitle,
-    body, setBody,
-    showForm, toggleForm } = usePostForm();
+  const {toggleForm } = usePostForm();
   return (
     <div className='post-container'>
       <PostForm />
       <div className='header'>
-        Post Manager
+        Test Forum
       </div>
       <div className='main-content'>
         <div className='leftside'>
